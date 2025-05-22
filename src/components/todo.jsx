@@ -1,27 +1,45 @@
-import { FaCheckCircle } from "react-icons/fa";
-import { IoTrashBin } from "react-icons/io5";
 import { useState } from "react";
+import { TodoForm } from "./todoForm";
+import { TodoList } from "./todoList";
+import { TodoDate } from "./TodoDate";
 
 
 export const Todo = () => {
 
-const [inputData , setInputData] = useState("");
-const [item , setItem] = useState([{
-    id : Number(),
-    content : new String(),
-}]);
-console.log("👌 ~ Todo ~ item:", item)
+    const [item, setItem] = useState([]);
 
 
-function handleSubmit (e) {
-    e.preventDefault();
-    if(inputData.length === 0) return;
-    setItem((pre) => [...pre , {
-        id : item.length,
-        content : inputData
-    }])
-    setInputData("");
-}
+    function handleSubmit(value) {
+        const { content } = value;
+        if (!content) return;
+
+        if (item.find((curElem) => curElem.content == content)) return;
+
+        setItem((pre) => [...pre, value])
+    }
+
+    const handleClearAll = () => {
+        setItem([]);
+    }
+
+    const handleCheckList = (value) => {
+        const {id , checked} = value
+        const isChecked = item.map((curElem) => {
+            if(curElem.id == id){
+                curElem.checked = !checked
+            }
+            return curElem;
+        })
+        setItem(isChecked)
+    }
+
+    const handleDeleteTodo = (value) => {
+        const items = item.filter((cur) => cur.content !== value)
+        setItem(items);
+    }
+
+
+    
 
 
 
@@ -29,38 +47,28 @@ function handleSubmit (e) {
         <section className="todo-container">
             <header>
                 <h1>Todo List</h1>
+                <TodoDate />
             </header>
 
-            <div className="form">
-                <form>
-                    <input type="text" className="todo-input" autoComplete="off" onChange={(e) => setInputData(e.target.value)} value={inputData}/>
-                    <button type="submit" className="todo-btn" onClick={handleSubmit}>
-                        Add Task
-                    </button>
-                </form>
-            </div>
+            <TodoForm onAddTodo={handleSubmit} />
 
             <div className="todo-list">
                 <ul>
                     {
-                       item.length == 1 ? "" :item.map((curElem) => {
-                        return <li key={curElem.id}>
-                        <span>
-                            {curElem.content}
-                        </span>
-                        <button className="check-btn">
-                            <FaCheckCircle />
-                        </button>
-                        <button className="delete-btn">
-                            <IoTrashBin />
-                        </button>
-                    </li>
-                    })
-                    }
+                        item.map((curElem) => {
+                            return (
+                                < TodoList
+                                    key={curElem.id}
+                                    data={curElem}
+                                    onHandleDeleteTodo={handleDeleteTodo}
+                                    onHandleChecklistTodo={handleCheckList}
+                                />
+                            );
+                    })}
                 </ul>
             </div>
 
-            <div className="btn">
+            <div className="btn" onClick={handleClearAll}>
                 Clear All
             </div>
         </section>

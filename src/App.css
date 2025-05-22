@@ -1,16 +1,16 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-:root{
-  --bg-color : rgb(46, 45, 43);
-  --btn-color : rgb(255, 255, 255);
-  --btn-bg-color : rgb(0, 80, 112);
-  --color : rgb(222, 220, 217);
-  --list-bg-color : rgb(255, 255, 255);
-  --list-color : rgb(0, 0, 0);
+:root {
+  --bg-color: rgb(46, 45, 43);
+  --btn-color: rgb(255, 255, 255);
+  --btn-bg-color: rgb(0, 80, 112);
+  --color: rgb(222, 220, 217);
+  --list-bg-color: rgb(255, 255, 255);
+  --list-color: rgb(0, 0, 0);
   background-color: var(--bg-color);
 }
 
@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 p,
@@ -59,7 +59,7 @@ li {
 
 /***** todo Section *****/
 .todo-container {
-  color: var(--color); 
+  color: var(--color);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -70,12 +70,20 @@ li {
   & header {
     margin-top: 5rem;
     font-size: 3.2rem;
+
+    & .date-time {
+      display: flex;
+      justify-content: center;
+      font-size: 1.8rem;
+      padding: 1rem 1rem 0 1rem;
+    }
+
   }
-  
+
   & .form {
     display: flex;
     width: 38rem;
-    
+
     & .todo-input {
       outline: none;
       border: none;
@@ -87,7 +95,7 @@ li {
     }
 
     & .todo-btn {
-      border-radius: 0  1rem 1rem 0;
+      border-radius: 0 1rem 1rem 0;
       width: 12rem;
       font-size: 2.2rem;
       height: 4.4rem;
@@ -95,9 +103,16 @@ li {
       color: var(--btn-color);
       border: none;
       cursor: pointer;
+
+      &:hover {
+        color: black;
+        font-weight: 550;
+        background-color: rgb(255, 217, 0);
+      }
+
     }
   }
-  
+
   & .todo-list {
     display: flex;
     justify-content: center;
@@ -116,7 +131,7 @@ li {
       align-items: center;
       border-radius: 2rem;
       position: relative;
-      
+
 
       & .check-btn {
         position: absolute;
@@ -150,10 +165,19 @@ li {
     background-color: red;
     color: var(--btn-color);
     cursor: pointer;
-    padding : 1.5rem;
+    padding: 1.5rem;
     border-radius: 1rem;
   }
 }
+
+.checkList {
+  text-decoration: line-through;
+}
+
+.notCheckList {
+  text-decoration: none;
+}
+
 /***** End todo Section *****/
 
 
@@ -161,12 +185,87 @@ li {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-@media (width <= 1120px) {
-  
+@media (width <=550px) {
+
+  html {
+    font-size: 50%;
+  }
+
+  .todo-container {
+
+    padding: 1rem 3rem 2rem;
+
+    & .form {
+      width: auto;
+            
+      & .todo-input {
+        padding: 0 0 0 1.8rem;
+        font-size: 1.7rem;
+        height: 32px;
+        width: 20rem;
+      }
+
+      & .todo-btn {
+        padding: .1rem .3rem;
+        width: 8rem;
+        height: 32px;
+        font-size: 1.6rem;
+      }
+
+    }
+
+    & .todo-list {
+      & li{
+        width: 31rem;
+      }
+    }
+
+
+  }
+
 }
 
+@media (width <=300px) {
+
+  html {
+    font-size: 37.5%;
+  }
+
+  .todo-container {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    & .form {            
+      & .todo-input {
+        width: 90px;
+        font-size: 25px;
+      }
+
+      & .todo-btn {
+        width: 40px;
+        font-size: 1.5rem;
+      }
+
+    }
+
+    & .todo-list {
+      & li{
+        width: 25rem;
+        & .check-btn {
+        position: absolute;
+        left: 16rem;
+      }
+
+      }
+    }
+
+
+  }
+
+}

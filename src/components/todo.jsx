@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TodoForm } from "./todoForm";
-import { TodoList } from "./todoList";
+import { TodoForm } from "./TodoForm";
+import { TodoList } from "./TodoList";
 import { TodoDate } from "./TodoDate";
 
 const todoKey = "nirjarTodo"

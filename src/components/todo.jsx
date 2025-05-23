@@ -3,10 +3,17 @@ import { TodoForm } from "./todoForm";
 import { TodoList } from "./todoList";
 import { TodoDate } from "./TodoDate";
 
+const todoKey = "nirjarTodo"
+const getLocalData = () => {
+    const data = localStorage.getItem(todoKey)
+    if (!data) return [];
+    return JSON.parse(data);
+}
 
 export const Todo = () => {
 
-    const [item, setItem] = useState([]);
+
+    const [item, setItem] = useState(getLocalData());
 
 
     function handleSubmit(value) {
@@ -18,14 +25,17 @@ export const Todo = () => {
         setItem((pre) => [...pre, value])
     }
 
+    // add local data 
+    localStorage.setItem(todoKey, JSON.stringify(item))
+
     const handleClearAll = () => {
         setItem([]);
     }
 
     const handleCheckList = (value) => {
-        const {id , checked} = value
+        const { id, checked } = value
         const isChecked = item.map((curElem) => {
-            if(curElem.id == id){
+            if (curElem.id == id) {
                 curElem.checked = !checked
             }
             return curElem;
@@ -39,7 +49,7 @@ export const Todo = () => {
     }
 
 
-    
+
 
 
 
@@ -64,7 +74,7 @@ export const Todo = () => {
                                     onHandleChecklistTodo={handleCheckList}
                                 />
                             );
-                    })}
+                        })}
                 </ul>
             </div>
 

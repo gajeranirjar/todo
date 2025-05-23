@@ -165,8 +165,14 @@ li {
     background-color: red;
     color: var(--btn-color);
     cursor: pointer;
-    padding: 1.5rem;
+    padding: 1.2rem 1.5rem;
     border-radius: 1rem;
+
+    &:hover {
+        color: black;
+        font-weight: 500;
+        background-color: rgb(255, 217, 0);
+      }
   }
 }
 
@@ -191,6 +197,12 @@ li {
   }
 }
 
+@media (width <=950px) {
+    .todo-container {
+      padding-right: 10rem;
+    }
+}
+
 @media (width <=550px) {
 
   html {
@@ -199,7 +211,7 @@ li {
 
   .todo-container {
 
-    padding: 1rem 3rem 2rem;
+    padding: 0 4rem 0 1rem;
 
     & .form {
       width: auto;
@@ -226,6 +238,9 @@ li {
       }
     }
 
+    & .btn {
+      padding: 1rem 1rem;
+    }
 
   }
 
@@ -238,9 +253,6 @@ li {
   }
 
   .todo-container {
-    padding-left: 10px;
-    padding-right: 10px;
-
     & .form {            
       & .todo-input {
         width: 90px;
@@ -266,6 +278,26 @@ li {
     }
 
 
+  }
+
+}
+
+@media (width <=200px) {
+
+  .todo-container {
+    padding : 0 28px 0 6px;
+    & .form {            
+      & .todo-input {
+        width: 80px;
+        font-size: 25px;
+      }
+
+      & .todo-btn {
+        width: 30px;
+        font-size: 1.5rem;
+      }
+
+    }
   }
 
 }

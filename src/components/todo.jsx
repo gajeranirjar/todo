@@ -74,7 +74,8 @@ export const Todo = () => {
                                     onHandleChecklistTodo={handleCheckList}
                                 />
                             );
-                        })}
+                        })
+                    }
                 </ul>
             </div>
 

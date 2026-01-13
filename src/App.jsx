@@ -1,13 +1,8 @@
-import './App.css'
-import { Todo } from './components/Todo.jsx'
+import './App.css';
+import { Todo } from './components/Todo.jsx';
 
 function App() {
-
-  return (
-    <>
-     <Todo />
-    </>
-  )
+  return <Todo />
 }
 
-export default App
+export default App;

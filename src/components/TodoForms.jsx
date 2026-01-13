@@ -1,19 +1,17 @@
-import { useState } from "react";
-
-export const TodoForm = ({onAddTodo}) => {
-
-    const [inputData , setInputData] = useState({id : "" , content : "" , checked : false});
+export const TodoForm = ({onAddTodo , inputData , setInputData}) => {
 
     const handleInputChange = ( value ) => {
-        setInputData({ id : value , content : value , checked : false}) 
+        setInputData({ id : inputData.id || Date.now() , content : value , isEdit:inputData.isEdit, checked : inputData.checked}) 
     }
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         onAddTodo(inputData);
-        setInputData({ id : "" , content : "" , checked : false}) 
+        setInputData({ id : "" , content : "" , isEdit:false, checked : false }) 
     }   
+
+    const isEdit = inputData.isEdit ? "Edit" : "Add Task"
 
      return(
         <div className="form">
@@ -25,7 +23,7 @@ export const TodoForm = ({onAddTodo}) => {
                         onChange = {(e) => handleInputChange(e.target.value)} 
                         value={inputData.content}/>
                     <button type="submit" className="todo-btn">
-                        Add Task    
+                        {isEdit}    
                     </button>
                 </form>
             </div>

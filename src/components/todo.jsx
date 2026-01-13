@@ -11,18 +11,26 @@ const getLocalData = () => {
 }
 
 export const Todo = () => {
-
-
+    const [inputData, setInputData] = useState({ id: Date.now() , content: "", isEdit: false, checked: false });
     const [item, setItem] = useState(getLocalData());
 
 
     function handleSubmit(value) {
-        const { content } = value;
+        const { content, isEdit, id, checked } = value;
         if (!content) return;
-
         if (item.find((curElem) => curElem.content == content)) return;
-
-        setItem((pre) => [...pre, value])
+        if (isEdit) {
+            const items = item.map((cur) => {
+                if (cur.id === id) {
+                    return { id, checked, content, isEdit: false }
+                }else {
+                    return cur;
+                }
+            })
+            setItem(items)
+        }else{
+            setItem((pre) => [...pre, value])
+        }
     }
 
     // add local data 
@@ -48,10 +56,13 @@ export const Todo = () => {
         setItem(items);
     }
 
-
-
-
-
+    // handle edit button
+    const handleEditTodo = (value) => {
+        setInputData({
+            ...value,
+            isEdit: !(value.isEdit),
+        });
+    }
 
     return <>
         <section className="todo-container">
@@ -60,8 +71,11 @@ export const Todo = () => {
                 <TodoDate />
             </header>
 
-            <TodoForm onAddTodo={handleSubmit} />
-
+            <TodoForm
+                onAddTodo={handleSubmit}
+                inputData={inputData}
+                setInputData={setInputData}
+            />
             <div className="todo-list">
                 <ul>
                     {
@@ -72,6 +86,7 @@ export const Todo = () => {
                                     data={curElem}
                                     onHandleDeleteTodo={handleDeleteTodo}
                                     onHandleChecklistTodo={handleCheckList}
+                                    onHandleEditTodo={handleEditTodo}
                                 />
                             );
                         })

@@ -20,26 +20,29 @@ CSS3
 JavaScript (ES6)
 Netlify (Deployment)
 
-✨ Features
+✨ Features -> 
 ✔ User Interface
 Clean and visually appealing design
 Input field to add new tasks
 Task list with checkboxes
 Edit and delete options for each task
 Responsive layout for mobile and desktop
+
 ✔ Functionality
 Add new tasks
 Mark tasks as completed / incomplete
 Edit task descriptions
 Delete tasks
 Persist data using localStorage
+
 ✔ Validation
 Prevents adding empty tasks
 Provides clear user feedback
+
 ✔ Responsive Design
 Fully responsive using CSS and media queries
 
-📂 Project Structure
+📂 Project Structure ->
 todo/
 ├── public/
 ├── src/
@@ -52,7 +55,7 @@ todo/
 ├── vite.config.js
 └── README.md
 
-🚀 How to Run Locally
+🚀 How to Run Locally ->
 Clone the repository
 git clone https://github.com/gajeranirjar/todo.git
 Install dependencies
@@ -60,12 +63,12 @@ npm install
 Start development server
 npm run dev
 
-Open in browser
+Open in browser ->
 http://localhost:5173
 
-📄 License
+📄 License 
 This project is created for educational purposes.
 
 👤 Author
 Nirjar Gajera
-
+GitHub: https://github.com/gajeranirjar
